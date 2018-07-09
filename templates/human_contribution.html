@@ -1,0 +1,63 @@
+{% extends "main_layout.html" %}
+
+{% block heading %}
+    Human Contribution For Crop
+{% endblock %}
+
+{% block body %}
+    <div class="bootstrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    <!-- Form code begins -->
+                    {#                    <form method="post">#}
+                    {#                        <div class="form-group"> <!-- Date input -->#}
+                    {#                            <label class="control-label" for="date">Date</label>#}
+                    {#                            <input class="form-control" type="date" name="date" min="2000-01-01"><br>#}
+                    {##}
+                    {#                            <label class="control-label" for="value">Value</label>#}
+                    {#                            <input class="form-control" id="date" name="date" placeholder="0-100" min="0" max="100"#}
+                    {#                                   type="number"/>#}
+                    {##}
+                    {##}
+                    {#                        </div>#}
+                    {#                        <div class="form-group"> <!-- Submit button -->#}
+                    {#                            <button class="btn btn-primary " name="submit" type="submit">Add</button>#}
+                    {#                        </div>#}
+                    {#                    </form>#}
+                    <!-- Form code ends -->
+                </div>
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>EmpID</th>
+                        <th>Devision</th>
+                        <th>Gender</th>
+                        <th>Experience(yrs)</th>
+                        <th>Age</th>
+                        <th>Pluck(Kg)</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for hum in dataset %}
+                        <tr>
+                            <td>{{ hum.Idate }}</td>
+                            <td>{{ hum.eid }}</td>
+                            <td>{{ hum.did }}</td>
+                             <td>{{ hum.gen }}</td>
+                            <td>{{ hum.ex }}</td>
+                            <td>{{ hum.age }}</td>
+                            <td>{{ hum.plk }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

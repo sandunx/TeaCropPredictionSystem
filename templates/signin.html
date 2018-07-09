@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.1/examples/sign-in/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Sachintha">
+    <link rel="icon" href="{{ url_for('static', filename='./img/tea_leaf.jpg') }}">
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='./css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='./css/signin.css') }}" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" action="{{ url_for('handle_signin') }}" method="post">
+      <img class="mb-4"  src="{{ url_for('static', filename='./img/tea_leaf.jpg') }}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© Plantation CROP AI 2018-2019</p>
+    </form>
+  
+
+</body></html>

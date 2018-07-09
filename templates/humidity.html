@@ -1,0 +1,70 @@
+{% extends "main_layout.html" %}
+
+{% block heading %}
+    Humidity
+{% endblock %}
+
+{% block body %}
+    <div class="bootstrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <!-- Form code begins -->
+                    <form action="{{ url_for('handle_humidity') }}" method="post">
+                        <div class="form-group"> <!-- Date input -->
+                            <label class="control-label" for="date">Date</label>
+                            <input class="form-control" type="date" name="date" min="2000-01-01"><br>
+                            <label class="control-label" for="value">Humidity</label>
+                            <input class="form-control" id="date" name="value" placeholder="0-100" min="0" max="100"
+                                   type="number"/>
+                        </div>
+                        <div class="form-group"> <!-- Submit button -->
+                            <button class="btn btn-primary " name="submit" type="submit">Add</button>
+                        </div>
+                    </form>
+                    <!-- Form code ends -->
+                </div>
+            </div>
+            <div class="col-md-10">
+                <h3>Past 10 days recodes</h3><br>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for humi in Humiditys %}
+                    <tr>
+                        <td>{{ humi.date }}</td>
+                        <td>{{ humi.value }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="ct-chart ct-perfect-fourth"></div>
+            <script>
+                var humiChart;
+                var getData = $.get('/humidity_data')
+
+                getData.done(function (results) {
+                    var data = {
+                        labels : results.labels,
+                        series : [
+                            results.results
+                        ]
+                    };
+
+                    var options = {
+                        width : 800,
+                        height : 600
+                    }
+
+                    humiChart = new Chartist.Line('.ct-chart', data, options);
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}

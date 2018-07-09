@@ -1,0 +1,57 @@
+{% extends "main_layout.html" %}
+
+{% block heading %}
+    Fertilizer
+{% endblock %}
+
+{% block body %}
+    <div class="bootstrap">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <!-- Form code begins -->
+                <form action="{{ url_for('handle_fertilizer') }}" method="post">
+                    <div class="form-group"> <!-- Date input -->
+                        <label class="control-label" for="date">Date</label>
+                        <input class="form-control" type="date" name="date" min="2000-01-01"><br>
+                        <label class="control-label" for="value">Fertilizer Type</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="nitrogen" selected>Nitrogen</option>
+                            <option value="lankem_20">Lankem 20</option>
+                            <option value="lankem_30">Lankem 32</option>
+                            <option value="cic_f54">CIC F54</option>
+                        </select>
+                        <label class="control-label" for="value">Kilogram</label>
+                        <input class="form-control" id="date" name="kilo" placeholder="0-100" min="0" max="100"
+                               type="number"/>
+                    </div>
+                    <div class="form-group"> <!-- Submit button -->
+                        <button class="btn btn-primary " name="submit" type="submit">Add</button>
+                    </div>
+                </form>
+                <!-- Form code ends -->
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h3>Past 10 days recodes</h3><br>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Kilo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ferti in Fertilizers %}
+                    <tr>
+                        <td>{{ ferti.date }}</td>
+                        <td>{{ ferti.type }}</td>
+                        <td>{{ ferti.kilo }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
