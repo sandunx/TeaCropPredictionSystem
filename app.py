@@ -42,8 +42,8 @@ Fertilizers = [Fertilizer('2018-06-10', 'nitrogen' ,20 ), Fertilizer('2018-06-11
 
 
 dataset = [Human('2018-06-07','00001','Upper','Male','35',5,20),
-           Human('2018-06-07', '00002', 'Upper','Male', '40', 15, 22),
-           Human('2018-06-08', '00004', 'Moddle','Female','55', 5, 14),
+           Human('2018-06-07', '00002', 'Upper','Male', '40', 15, 25),
+           Human('2018-06-08', '00004', 'Moddle','Female','55', 10, 14),
            Human('2018-06-07', '00023', 'Upper', 'Female','35', 42, 20),
            Human('2018-06-09', '00056', 'East','Female', '46', 20, 25),
            Human('2018-06-07', '02345', 'Upper', 'Male','35', 5, 20),
