@@ -1,6 +1,12 @@
 from flask import Flask, render_template, session, request, jsonify
 
+
+
 app = Flask(__name__)
+
+
+
+
 
 class Humidity:
   def __init__(self, date, value):
@@ -28,12 +34,21 @@ class Human:
         self.ex=ex
         self.plk=plk
 
+
+class Temperature:
+    def __init__(self, date, value):
+        self.date = date
+        self.value = value
+
 Humiditys = [Humidity('2018-06-10', 83), Humidity('2018-06-11', 97.3), Humidity('2018-06-12', 76), Humidity('2018-06-13', 73.56), Humidity('2018-06-14', 82),Humidity('2018-06-15', 67)
              ,Humidity('2018-06-16', 90),Humidity('2018-06-17', 78.3),Humidity('2018-06-18', 74)]
 
 
 Rainfalls = [Rainfall('2018-06-10', 23.5 ), Rainfall('2018-06-11', 98.5), Rainfall('2018-06-12', 62.1), Rainfall('2018-06-13', 53), Rainfall('2018-06-14', 87.4),Rainfall('2018-06-15', 26.0)
              ,Rainfall('2018-06-16', 90.45),Rainfall('2018-06-17', 87.12),Rainfall('2018-06-18', 45.5)]
+
+Temperatures = [Temperature('2018-06-10', 23.5 ), Temperature('2018-06-11', 98.5), Temperature('2018-06-12', 62.1), Temperature('2018-06-13', 53), Temperature('2018-06-14', 87.4),Temperature('2018-06-15', 26.0)
+             ,Temperature('2018-06-16', 90.45),Temperature('2018-06-17', 87.12),Temperature('2018-06-18', 45.5)]
 
 Fertilizers = [Fertilizer('2018-06-10', 'nitrogen' ,20 ), Fertilizer('2018-06-11', 'lankem_20' ,30 ), Fertilizer('2018-06-12', 'cic_f5' ,50 ), Fertilizer('2018-06-13', 'nitrogen' ,20 )]
 
@@ -87,6 +102,13 @@ def handle_humidity():
         Humiditys.append(humi)
     return render_template('humidity.html', Humiditys = Humiditys)
 
+@app.route('/handle_temperature', methods=['GET', 'POST'])
+def handle_temperature():
+    if request.method == "POST":
+        temperature = Temperature(request.form.get('date'), request.form.get('value'))
+        Temperatures.append(temperature)
+    return render_template('temperature.html', Temperatures = Temperatures)
+
 @app.route('/handle_rainfall', methods=['GET', 'POST'])
 def handle_rainfall():
     if request.method == "POST":
@@ -120,6 +142,16 @@ def rainfall_data():
         results.append(rain.value)
         labels.append(rain.date)
     return jsonify({'results':results, 'labels':labels})
+
+@app.route('/temperature_data')
+def temperature_data():
+    results = []
+    labels = []
+    for tempereature in Temperatures:
+        results.append(tempereature.value)
+        labels.append(tempereature.date)
+    return jsonify({'results':results, 'labels':labels})
+
 
 
 @app.route('/handle_human')
